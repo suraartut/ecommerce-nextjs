@@ -8,28 +8,28 @@ import { FaFacebookF } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="w-full h-auto bg-[#266958]">
-      <div className="px-20 flex flex-col w-full m-auto justify-center text-center items-center text-white border-b border-gray-400 py-12">
+      <div className="lg:px-20 px-5 flex flex-col w-full m-auto justify-center text-center items-center text-white border-b border-gray-400 lg:py-12 py-9">
         <h2 className="w-full text-center uppercase text-white">
           NEWSLETTER SUBSCRIPTION
         </h2>
-        <p className="w-1/3 h-auto text-center text-white text-sm my-3">
+        <p className="lg:w-1/3 w-full h-auto text-center text-white text-sm my-3">
           Sign up for Company updates to receive information about new arrivals,
           future events and specials.
         </p>
         <div>
-          <form className="h-9 flex w-full mt-2">
+          <form className="lg:h-9 h-auto lg:flex block w-full mt-2">
             <input
               type="email"
               placeholder="Enter Your Email Adress"
-              className="w-96 px-4 text-gray-900 outline-none text-sm"
+              className="lg:w-96 w-80 lg:py-0 py-3 px-4 text-gray-900 outline-none text-sm lg:mb-0 mb-3"
             />
-            <button className="ml-2 px-5 text-black items-center text-sm uppercase bg-[#FFD2B1] hover:bg-[#266958] hover:text-white duration-300 transition-all ease-in-out">
+            <button className="ml-2 px-5 lg:py-0 py-3 text-black items-center text-sm uppercase bg-[#FFD2B1] hover:bg-[#266958] hover:text-white duration-300 transition-all ease-in-out">
               SUBSCRIBE!
             </button>
           </form>
         </div>
       </div>
-      <div className="px-20 w-full m-auto justify-start items-center text-white pt-12 pb-8 grid grid-cols-4">
+      <div className="lg:px-20 px-6 w-full m-auto justify-start items-center text-white lg:pt-12 pt-8 lg:pb-8 pb-10 grid lg:grid-cols-4">
         <div className="col-span-2 grid grid-cols-2">
           {FooterData?.map((item) => {
             return (
@@ -43,48 +43,50 @@ const Footer = () => {
             );
           })}
         </div>
-        <div className="">
-          <div className="font-bold pb-4">Call Us</div>
-          <Link
-            href="/"
-            className="block pb-4 hover:text-green-300 duration-300 transition-all ease-in-out"
-          >
-            +(999) 999-99-99
-          </Link>
-          <Link
-            href="mailto:info@gmail.com"
-            className="pb-4 hover:text-green-300 duration-300 transition-all ease-in-out"
-          >
-            info@gmail.com
-          </Link>
-        </div>
-        <div className="">
-          <div className="font-bold pb-4">Follow Us</div>
-          <div className="flex w-full gap-6">
+        <div className="grid lg:grid-cols-1 grid-cols-2 ">
+          <div>
+            <div className="font-bold pb-4">Call Us</div>
             <Link
               href="/"
-              className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+              className="block pb-4 hover:text-green-300 duration-300 transition-all ease-in-out"
             >
-              <FaFacebookF />
+              +(999) 999-99-99
             </Link>
             <Link
-              href="/"
-              className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+              href="mailto:info@gmail.com"
+              className="pb-4 hover:text-green-300 duration-300 transition-all ease-in-out"
             >
-              <BsInstagram />
+              info@gmail.com
             </Link>
-            <Link
-              href="/"
-              className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
-            >
-              <ImTwitter />
-            </Link>
-            <Link
-              href="/"
-              className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
-            >
-              <BsPinterest />
-            </Link>
+          </div>
+          <div className="">
+            <div className="font-bold pb-4">Follow Us</div>
+            <div className="flex w-full gap-6">
+              <Link
+                href="/"
+                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+              >
+                <FaFacebookF />
+              </Link>
+              <Link
+                href="/"
+                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+              >
+                <BsInstagram />
+              </Link>
+              <Link
+                href="/"
+                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+              >
+                <ImTwitter />
+              </Link>
+              <Link
+                href="/"
+                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+              >
+                <BsPinterest />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

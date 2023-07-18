@@ -57,3 +57,9 @@ body {
   width: 10px !important;
   height: 10px !important;
 }
+
+@media only screen and (max-width: 500px) {
+  .swiper-pagination-bullet {
+    margin-bottom: 15px !important;
+  }
+}

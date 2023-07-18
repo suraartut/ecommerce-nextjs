@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const Slider = () => {
   return (
-    <div className="slider w-full h-screen">
+    <div className="slider w-full lg:h-screen h-[50vh]">
       <Swiper
         pagination={{
           clickable: true,
@@ -25,7 +25,7 @@ const Slider = () => {
         effect={"fade"}
         navigation={true}
         modules={[Pagination, Navigation, EffectFade, Autoplay]}
-        className="mySwiper h-screen w-full"
+        className="mySwiper lg:h-screen h-[50vh] w-full"
       >
         <SwiperSlide>
           <Image
