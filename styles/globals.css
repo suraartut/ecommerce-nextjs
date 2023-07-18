@@ -10,6 +10,7 @@
 }
 
 /* text-color:#141414 */
+/* bg-[#266958] */
 body {
   font-family: "Madera", sans-serif;
   color: #141414;
@@ -44,4 +45,15 @@ body {
   100% {
     max-height: 250px;
   }
+}
+
+.swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 1 !important;
+  margin-bottom: 95px !important;
+}
+
+.swiper-pagination-bullet-active-main {
+  width: 10px !important;
+  height: 10px !important;
 }

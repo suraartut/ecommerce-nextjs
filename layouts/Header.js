@@ -32,7 +32,7 @@ const Header = () => {
   }, [Router]);
 
   return (
-    <header className="w-full h-auto z-[100] bg-white">
+    <header className="w-full h-auto z-[100] bg-white relative">
       <div className="flex px-20 py-5 w-full m-auto justify-between items-center uppercase text-[#141414]">
         <div className="flex w-1/3 justify-around">
           {category?.map((item, index) => {
