@@ -41,13 +41,13 @@ const Header = () => {
   return (
     <header className="w-full h-auto z-[100] bg-white relative">
       <div className="flex lg:px-20 px-6 py-5 w-full m-auto justify-between lg:items-center uppercase text-[#141414]">
-        <div class="flex lg:hidden relative">
+        <div className="flex lg:hidden relative">
           <div className="flex">
             {!showMenu ? (
-              <div class="space-y-1.5" onClick={handleClick}>
-                <span class="block w-8 h-0.5 bg-gray-600 animate-pulse"></span>
-                <span class="block w-8 h-0.5 bg-gray-600 animate-pulse"></span>
-                <span class="block w-8 h-0.5 bg-gray-600 animate-pulse"></span>
+              <div className="space-y-1.5" onClick={handleClick}>
+                <span className="block w-8 h-0.5 bg-gray-600 animate-pulse"></span>
+                <span className="block w-8 h-0.5 bg-gray-600 animate-pulse"></span>
+                <span className="block w-8 h-0.5 bg-gray-600 animate-pulse"></span>
               </div>
             ) : (
               <AiOutlineClose
@@ -62,7 +62,7 @@ const Header = () => {
             if (index < 5) {
               return (
                 <div key={item.id}>
-                  <Link href="/">
+                  <Link href={`/category/${item.id}`}>
                     <div className="hover:text-gray-400 duration-300 transition-all ease-in-out">
                       {item.name}
                     </div>
