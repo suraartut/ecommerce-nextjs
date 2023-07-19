@@ -63,3 +63,11 @@ body {
     margin-bottom: 15px !important;
   }
 }
+
+.deneme {
+  position: absolute;
+  background-color: white;
+  top: 50px;
+  width: 100%;
+  left: 0;
+}
