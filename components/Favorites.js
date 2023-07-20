@@ -39,7 +39,7 @@ const Favorites = () => {
                     <div className="w-full flex">
                       <button
                         type="submit"
-                        className="uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out "
+                        className="uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out"
                       >
                         ADD TO CART
                       </button>

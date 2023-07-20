@@ -149,7 +149,7 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="deneme">
+      <div className="hamburger-menu">
         {showMenu && (
           <div className="p-6">
             {category?.map((item, index) => {

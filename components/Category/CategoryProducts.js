@@ -32,10 +32,10 @@ const CategoryProducts = ({ Categories }) => {
         {CategorySlice?.map((item, index) => {
           return (
             <div key={index} className="border border-gray-300">
-              <Link href="/">
+              <Link href={`/product/${item.id}`}>
                 <Image
+                  blurDataURL="/Images/blur.png"
                   placeholder="blur"
-                  blurDataURL="https://cdn.myikas.com/images/6d452771-fa42-482d-a9a5-b47e65a5bf47/1584c545-2604-4edf-b183-4e8b0454e2c3/image_10.webp"
                   src={item.images[0]}
                   width={370}
                   height={360}
