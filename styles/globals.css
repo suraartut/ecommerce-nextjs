@@ -16,6 +16,7 @@ body {
   color: #141414;
 }
 
+/* Search Modal */
 .searchopen {
   position: fixed;
   top: 0;
@@ -47,19 +48,27 @@ body {
   }
 }
 
-.swiper-pagination-bullet {
+/* Home Slider */
+.slider .swiper-pagination-bullet {
   background-color: white !important;
   opacity: 1 !important;
   margin-bottom: 95px !important;
 }
 
-.swiper-pagination-bullet-active-main {
+.slider .swiper-pagination-bullet-active-main {
   width: 10px !important;
   height: 10px !important;
 }
 
+/* Product Detail Slider */
+.product-detail-slider .swiper-button-prev,
+.product-detail-slider .swiper-button-next {
+  color: #266958 !important;
+}
+
+/* Hamburger Menu and Home Slider Mobil */
 @media only screen and (max-width: 500px) {
-  .swiper-pagination-bullet {
+  .slider .swiper-pagination-bullet {
     margin-bottom: 15px !important;
   }
 }
@@ -70,4 +79,19 @@ body {
   top: 50px;
   width: 100%;
   left: 0;
+}
+
+/* Add To Cart Button */
+.add-to-cart {
+  display: none;
+}
+
+.add-to-cart-button:hover .add-to-cart {
+  display: block;
+}
+
+/* Footer Social Media Icons */
+.social-media-icon:hover {
+  transform: scale(1.5);
+  transition: all 0.3s linear;
 }

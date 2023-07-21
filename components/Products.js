@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 
 const Products = () => {
   const [product, setProduct] = useState([]);
@@ -10,7 +11,6 @@ const Products = () => {
       .get("https://api.escuelajs.co/api/v1/categories/2/products")
       .then((res) => {
         setProduct(res.data);
-        console.log(res.data);
       });
   }, []);
 
@@ -32,12 +32,13 @@ const Products = () => {
                 <div className="mt-[15px]">
                   <div className="text-sm">{item.title}</div>
                   <div className="mb-3">${item.price}.00</div>
-                  <div className="w-full flex">
+                  <div className="w-full flex deneme">
                     <button
                       type="submit"
-                      className="uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out "
+                      className="add-to-cart-button flex gap-6 uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out"
                     >
                       ADD TO CART
+                      <HiOutlineShoppingBag className="add-to-cart items-center text-center text-xl " />
                     </button>
                   </div>
                 </div>

@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination, Navigation, EffectFade, Autoplay } from "swiper/modules";
+import { Pagination, EffectFade, Autoplay } from "swiper/modules";
 import Image from "next/image";
 
 const Slider = () => {
@@ -23,8 +23,7 @@ const Slider = () => {
         }}
         loop={true}
         effect={"fade"}
-        navigation={true}
-        modules={[Pagination, Navigation, EffectFade, Autoplay]}
+        modules={[Pagination, EffectFade, Autoplay]}
         className="mySwiper lg:h-screen h-[50vh] w-full"
       >
         <SwiperSlide>

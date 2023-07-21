@@ -57,7 +57,7 @@ const Header = () => {
             )}
           </div>
         </div>
-        <div className="lg:flex hidden w-1/3 justify-around">
+        <div className="lg:flex hidden w-1/3 justify-around md:gap-5">
           {category?.map((item, index) => {
             if (index < 5) {
               return (

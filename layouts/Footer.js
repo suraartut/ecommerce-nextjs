@@ -29,7 +29,7 @@ const Footer = () => {
           </form>
         </div>
       </div>
-      <div className="lg:px-20 px-6 w-full m-auto justify-start items-center text-white lg:pt-12 pt-8 lg:pb-8 pb-10 grid lg:grid-cols-4">
+      <div className="container lg:px-20 px-6 w-full mx-auto justify-start items-center text-white lg:pt-12 pt-8 lg:pb-8 pb-10 grid lg:grid-cols-4">
         <div className="col-span-2 grid grid-cols-2">
           {FooterData?.map((item) => {
             return (
@@ -43,7 +43,7 @@ const Footer = () => {
             );
           })}
         </div>
-        <div className="grid lg:grid-cols-1 grid-cols-2 ">
+        <div className="lg:flex grid lg:justify-between lg:grid-cols-1 grid-cols-2">
           <div>
             <div className="font-bold pb-4">Call Us</div>
             <Link
@@ -64,27 +64,27 @@ const Footer = () => {
             <div className="flex w-full gap-6">
               <Link
                 href="/"
-                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+                className="pb-4 text-2xl hover:text-blue-600 duration-300 transition-all ease-in-out"
               >
-                <FaFacebookF />
+                <FaFacebookF className="social-media-icon" />
               </Link>
               <Link
                 href="/"
-                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+                className="pb-4 text-2xl hover:text-[#e11d74] duration-300 transition-all ease-in-out"
               >
-                <BsInstagram />
+                <BsInstagram className="social-media-icon" />
               </Link>
               <Link
                 href="/"
-                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+                className="pb-4 text-2xl hover:text-[#00adb5] duration-300 transition-all ease-in-out"
               >
-                <ImTwitter />
+                <ImTwitter className="social-media-icon" />
               </Link>
               <Link
                 href="/"
-                className="pb-4 text-2xl hover:text-green-300 duration-300 transition-all ease-in-out"
+                className="pb-4 text-2xl hover:text-red-600 duration-300 transition-all ease-in-out"
               >
-                <BsPinterest />
+                <BsPinterest className="social-media-icon" />
               </Link>
             </div>
           </div>

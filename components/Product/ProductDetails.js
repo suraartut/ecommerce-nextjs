@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+// import required modules
+import { Navigation } from "swiper/modules";
 
 const ProductDetails = ({ Products }) => {
   const [Quantity, setQuantity] = useState(1);
@@ -10,7 +18,28 @@ const ProductDetails = ({ Products }) => {
     <div className="w-full">
       <div className="container lg:flex m-auto lg:p-36 p-6 gap-12">
         <div className="lg:w-1/2 w-full text-center">
-          <Image src={Products.images[0]} width={600} height={600} />
+          <div>Ürün fotoğrafları</div>
+          <div>
+            <Swiper
+              loop={true}
+              navigation={true}
+              modules={[Navigation]}
+              className="mySwiper product-detail-slider"
+            >
+              {Products.images.map((item, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <Image
+                      src={item}
+                      width={650}
+                      height={650}
+                      alt="Product Photos"
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
         </div>
         <div className="lg:w-1/2 w-full">
           <h2 className="lg:text-2xl text-xl uppercase font-bold lg:pb-6 pb-4 lg:pt-0 pt-3">
