@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
+import { toast } from "react-toastify";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Store } from "../../context/ProductContext";
+import { useRouter } from "next/router";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,15 +13,43 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
 const ProductDetails = ({ Products }) => {
+  const Router = useRouter();
   const [Quantity, setQuantity] = useState(1);
   //There isn't any stock in APİ, and for this reason I used rate value
   const StockQuantity = 5;
+
+  const { state, dispatch } = useContext(Store);
+
+  const inputChangedHandler = (event) => {
+    const updatedKeyword = event.target.value;
+    // if we don't use this we see warning
+  };
+
+  const addToCartHandler = async () => {
+    const existItem = state.cart.cartItems.find((x) => x.id === Products.id);
+    setQuantity(existItem ? existItem.Quantity + 1 : 1);
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...Products, Quantity } });
+    setQuantity(1);
+    // Router.push(
+    //   {
+    //     pathname: Router.pathname,
+    //     query: {
+    //       id: Router.query.id,
+    //       ok: 1,
+    //     },
+    //   },
+    //   undefined,
+    //   { shallow: true }
+    // );
+  };
+
+  console.log(state);
 
   return (
     <div className="w-full">
       <div className="container lg:flex m-auto lg:p-36 p-6 gap-12">
         <div className="lg:w-1/2 w-full text-center">
-          <div>Ürün fotoğrafları</div>
+          <div className="">Ürün fotoğrafları</div>
           <div>
             <Swiper
               loop={true}
@@ -88,8 +119,11 @@ const ProductDetails = ({ Products }) => {
               </svg>
             </div>
             <button
-              type="submit"
               className="w-full uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out"
+              onClick={() => {
+                addToCartHandler();
+                toast("Added to bag");
+              }}
             >
               Add To Cart
             </button>
