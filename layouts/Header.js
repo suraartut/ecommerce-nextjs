@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { ImSearch } from "react-icons/im";
 import { HiOutlineShoppingBag } from "react-icons/hi";
@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { GrClose } from "react-icons/gr";
 import { AiOutlineClose } from "react-icons/ai";
+import { Store } from "../context/ProductContext";
 
 const Header = () => {
   const [showMenu, setshowMenu] = useState(false);
@@ -17,17 +18,18 @@ const Header = () => {
 
   const [category, setCategory] = useState([]);
 
-  const Router = useRouter();
-  const searchRef = useRef();
-  const searchInputRef = useRef();
-  const [openSearch, setOpenSearch] = useState(false);
-  const [searchText, setSearchText] = useState("");
-
   useEffect(() => {
     axios.get("https://api.escuelajs.co/api/v1/categories").then((res) => {
       setCategory(res.data);
     });
   }, []);
+
+  // search modal
+  const Router = useRouter();
+  const searchRef = useRef();
+  const searchInputRef = useRef();
+  const [openSearch, setOpenSearch] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     searchInputRef.current.focus();
@@ -36,6 +38,39 @@ const Header = () => {
 
   useEffect(() => {
     setOpenSearch(false);
+  }, [Router]);
+
+  // shopping cart
+  const [IsOpen, setIsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.Quantity, 0));
+  }, [cart.cartItems]);
+
+  const removeItem = (item) => {
+    dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+  };
+
+  useEffect(() => {
+    setIsOpen(false);
+    if (Router.query.ok == 1) {
+      setIsOpen(true);
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 2000);
+    }
   }, [Router]);
 
   return (
@@ -145,7 +180,49 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <HiOutlineShoppingBag className="text-2xl hover:text-gray-400 cursor-pointer" />
+          {/* shopping cart bag */}
+          <div className="shopping-cart">
+            <button className="flex" onClick={openModal}>
+              <HiOutlineShoppingBag className="text-2xl hover:text-gray-400 cursor-pointer" />
+              <div className="bg-[#FFD2B1] text-black text-xs items-center text-center h-1/2 relative bottom-2 right-2 px-2 py-1 rounded-full">
+                {cartItemsCount > 0 ? (
+                  <span>{cart.cartItems.length}</span>
+                ) : (
+                  <span>0</span>
+                )}
+              </div>
+            </button>
+            {IsOpen ? (
+              <div className="w-96 absolute right-20 top-16 bg-white pt-3 pb-5 px-4 text-[#141414] border">
+                <button
+                  className="w-full text-right font-bold"
+                  onClick={closeModal}
+                >
+                  X
+                </button>
+                {cart.cartItems.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <div className="w-full flex">
+                        <div>
+                          <Image
+                            src={item.images[0]}
+                            width={100}
+                            height={100}
+                            alt={item.title}
+                          />
+                        </div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
 

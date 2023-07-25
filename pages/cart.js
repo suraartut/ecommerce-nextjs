@@ -4,6 +4,8 @@ import { Store } from "../context/ProductContext";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { BsBagX } from "react-icons/bs";
 
 const cart = () => {
   const Router = useRouter();
@@ -62,7 +64,7 @@ const cart = () => {
                       <div className="flex md:w-2/5 w-full">
                         {/* product */}
                         <div className="w-full">
-                          <img className="h-24" src={Item.images} alt="" />
+                          <img className="h-24 w-24" src={Item.images} alt="" />
                         </div>
                         <div className="flex flex-col justify-center ml-4 flex-grow">
                           <span className="font-bold text-sm">
@@ -73,7 +75,7 @@ const cart = () => {
                           </span>
                           <button
                             onClick={() => removeItem(Item)}
-                            className="font-semibold mt-3 hover:text-[#a54201] text-gray-400 text-sm cursor-pointer"
+                            className="font-semibold mt-3 hover:text-[#266958] text-[#FFD2B1] text-sm cursor-pointer text-left"
                           >
                             Delete
                           </button>
@@ -95,7 +97,7 @@ const cart = () => {
                           <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
                         </svg>
                         <input
-                          className="mx-2 border text-center w-8"
+                          className="mx-2 border text-center pb-1 w-8"
                           type="text"
                           value={Item.Quantity}
                           onChange={(event) => inputChangedHandler(event)}
@@ -119,13 +121,10 @@ const cart = () => {
                     </div>
                   );
                 })}
-                <div className="lg:block hidden">
-                  <Link
-                    href="/"
-                    className="flex hover:text-[#FFD2B1] text-[#266958] text-md mt-10"
-                  >
+                <div className="lg:block hidden hover:text-[#FFD2B1] text-[#266958]">
+                  <Link href="/" className="flex text-md mt-10">
                     <svg
-                      className="fill-current mr-2 mt-1 hover:text-[#FFD2B1] text-[#266958] w-4"
+                      className="fill-current mr-2 mt-1 w-4"
                       viewBox="0 0 448 512"
                     >
                       <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
@@ -135,60 +134,78 @@ const cart = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="w-full sm:px-8 px-2 sm:py-10 py-3 lg:mt-[108px] mt-6 lg:border border-gray-300">
-                <h1 className="font-semibold text-2xl border-b pb-8">
-                  Order Summary
-                </h1>
+            {cartItems.length > 0 && (
+              <div>
+                <div className="w-full sm:px-8 px-2 sm:py-10 py-3 lg:mt-[108px] mt-6 lg:border border-gray-300">
+                  <h1 className="font-semibold text-2xl border-b pb-8">
+                    Order Summary
+                  </h1>
+                  <div className="flex font-semibold justify-between py-4 text-sm uppercase">
+                    <span>Total Quantity</span>
+                    <span className="text-gray-500">
+                      {cartItems.reduce((a, c) => a + c.Quantity, 0)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between py-4 border-t">
+                    <span className="font-semibold text-sm uppercase">
+                      Subtotal
+                    </span>
+                    <span className="font-semibold text-sm text-gray-500 sm:pl-7">
+                      $
+                      {cartItems
+                        .reduce((a, c) => a + c.Quantity * c.price, 0)
+                        .toFixed(2)}
+                    </span>
+                  </div>
 
-                <div className="flex justify-between mt-4 pb-4 border-b">
-                  <span className="font-semibold text-sm uppercase">
-                    Total Discount
-                  </span>
-                  <span className="font-semibold text-sm text-gray-500 sm:pl-7">
-                    {/* ( %
-                            {(
-                              ((CartItems.data.cartTotal.toplamIndirimsizTutar -
-                                CartItems.data.cartTotal.toplamTutar) /
-                                CartItems.data.cartTotal
-                                  .toplamIndirimsizTutar) *
-                              100
-                            ).toFixed(2)}
-                            ) {GetKur(CartItems.data.cartTotal.toplamIndirim)} */}
-                  </span>
+                  <div className="flex justify-between py-4 border-t">
+                    <span className="font-semibold text-sm uppercase">
+                      Cargo
+                    </span>
+                    <span className="font-semibold text-sm text-gray-500">
+                      $10.00
+                    </span>
+                  </div>
+                  <div className="flex font-semibold justify-between text-sm uppercase pt-5 border-t border-black">
+                    <span>Total Amount</span>
+                    <span className="text-gray-500">
+                      $
+                      {cartItems
+                        .reduce((a, c) => a + c.Quantity * c.price, 10)
+                        .toFixed(2)}
+                    </span>
+                  </div>
+                  <button
+                    className="mt-5 font-semibold bg-[#266958] hover:bg-[#FFD2B1] pt-3 pb-4 text-sm text-white hover:text-black uppercase w-full"
+                    onClick={() => {
+                      toast("Purchased");
+                      setTimeout(() => {
+                        removeAllItem(cartItems);
+                      }, 1500);
+                    }}
+                  >
+                    Checkout
+                  </button>
                 </div>
-                <div className="flex justify-between mt-4 pb-4 border-b">
-                  <span className="font-semibold text-sm uppercase">
-                    Subtotal
-                  </span>
-                  <span className="font-semibold text-sm text-gray-500">
-                    {/* {GetKur(
-                              CartItems.data.cartTotal.toplamTutar -
-                                (CartItems.data.cartTotal.toplamTutar *
-                                  (1 + 18 / 100) -
-                                  CartItems.data.cartTotal.toplamTutar)
-                            )} */}
-                  </span>
-                </div>
-                <div className="flex font-semibold justify-between py-4 text-sm uppercase">
-                  <span>Total Quantity</span>
-                  <span className="text-gray-500">{cartItems.price}</span>
-                </div>
-                <div className="flex font-semibold justify-between text-sm uppercase pt-5 border-t border-black">
-                  <span>Total Amount</span>
-                  <span className="text-gray-500">
-                    {/* {GetKur(SepetToplami)} */}
-                  </span>
-                </div>
-                <button className="mt-5 font-semibold bg-[#266958] hover:bg-[#FFD2B1] pt-3 pb-4 text-sm text-white hover:text-black uppercase w-full">
-                  Checkout
-                </button>
               </div>
-            </div>
+            )}
           </div>
         </div>
       ) : (
-        <div></div>
+        <div className="w-full md:max-w-7xl mx-auto lg:py-20 py-10 text-center">
+          <BsBagX className="w-full text-5xl text-[#141414] text-center mt-14" />
+          <p className="md:text-4xl text-xl text-[#141414] text-center mt-2">
+            Your bag is empty
+          </p>
+          <div className="bg-[#FFD2B1] hover:bg-[#266958] text-[#266958] hover:text-[#FFD2B1] pt-2 pb-3 items-center mt-20 mb-10 lg:mx-0 mx-5">
+            <Link href="/" className="flex text-xl justify-center">
+              <svg className="fill-current mr-3 mt-1 w-6" viewBox="0 0 448 512">
+                <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+              </svg>
+              Continue Shopping
+            </Link>
+          </div>
+        </div>
       )}
     </>
   );
