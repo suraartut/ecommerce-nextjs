@@ -182,7 +182,18 @@ const Header = () => {
           </div>
           {/* shopping cart bag */}
           <div className="shopping-cart">
-            <button className="flex" onClick={openModal}>
+            <button
+              className="flex"
+              onClick={() => {
+                setIsOpen(!IsOpen);
+              }}
+              // onMouseOver={() => {
+              //   setIsOpen(true);
+              // }}
+              // onMouseLeave={() => {
+              //   setIsOpen(false);
+              // }}
+            >
               <HiOutlineShoppingBag className="text-2xl hover:text-gray-400 cursor-pointer" />
               <div className="bg-[#FFD2B1] text-black text-xs items-center text-center h-1/2 relative bottom-2 right-2 px-2 py-1 rounded-full">
                 {cartItemsCount > 0 ? (
@@ -193,31 +204,55 @@ const Header = () => {
               </div>
             </button>
             {IsOpen ? (
-              <div className="w-96 absolute right-20 top-16 bg-white pt-3 pb-5 px-4 text-[#141414] border">
+              <div className="lg:w-96 w-80 absolute lg:right-20 right-6 lg:top-16 top-14 bg-white pt-5 pb-7 px-5 text-[#141414] rounded-md border border-[#266958]">
                 <button
-                  className="w-full text-right font-bold"
+                  className="lg:hidden block w-full text-right font-bold"
                   onClick={closeModal}
                 >
                   X
                 </button>
+                <h3 className="font-bold pb-2 border-b border-black text-center capitalize">
+                  Shopping Cart
+                </h3>
                 {cart.cartItems.map((item, index) => {
                   return (
-                    <div key={index}>
-                      <div className="w-full flex">
+                    <div key={index} className="border-b">
+                      <div className="w-full my-3 grid grid-cols-4">
                         <div>
                           <Image
                             src={item.images[0]}
-                            width={100}
-                            height={100}
+                            width={80}
+                            height={80}
                             alt={item.title}
+                            className=""
                           />
                         </div>
-                        <div></div>
-                        <div></div>
+                        <div className="mx-4 text-sm col-span-2 capitalize">
+                          <div className="mb-2">{item.title}</div>
+                          <div>Quantity: {item.Quantity}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="mb-8 text-sm">${item.price}.00</div>
+                          <div
+                            className="text-xs font-bold text-[#266958] hover:text-red-600 cursor-pointer capitalize"
+                            onClick={() => removeItem(item)}
+                          >
+                            Delete
+                          </div>
+                        </div>
                       </div>
                     </div>
                   );
                 })}
+                <div className="my-3 font-bold capitalize">
+                  Total Cart: $
+                  {cart.cartItems
+                    .reduce((a, c) => a + c.Quantity * c.price, 0)
+                    .toFixed(2)}
+                </div>
+                <div className="bg-[#FFD2B1] hover:bg-[#266958] hover:text-white items-center text-center pt-1 pb-2">
+                  <Link href="/cart">Complete</Link>
+                </div>
               </div>
             ) : (
               ""

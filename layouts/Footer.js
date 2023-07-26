@@ -29,7 +29,7 @@ const Footer = () => {
           </form>
         </div>
       </div>
-      <div className="container lg:px-20 px-6 w-full mx-auto justify-start items-center text-white lg:pt-12 pt-8 lg:pb-8 pb-10 grid lg:grid-cols-4">
+      <div className="container lg:px-20 px-6 w-full mx-auto justify-start text-white lg:pt-12 pt-8 lg:pb-8 pb-10 grid lg:grid-cols-4">
         <div className="col-span-2 grid grid-cols-2">
           {FooterData?.map((item) => {
             return (
@@ -43,7 +43,7 @@ const Footer = () => {
             );
           })}
         </div>
-        <div className="lg:flex grid lg:justify-between lg:grid-cols-1 grid-cols-2">
+        <div className="col-span-2 grid grid-cols-2">
           <div>
             <div className="font-bold pb-4">Call Us</div>
             <Link

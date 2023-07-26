@@ -7,6 +7,9 @@ const nextConfig = {
       "pbs.twimg.com",
       "www.coliseugeek.com.br",
       "placeimg.com",
+      "cdn1.iconfinder.com",
+      "i.ebayimg.com",
+      "www.pratik.com.ua",
     ],
   },
 };

@@ -15,6 +15,7 @@ import { Navigation } from "swiper/modules";
 const ProductDetails = ({ Products }) => {
   const Router = useRouter();
   const [Quantity, setQuantity] = useState(1);
+  const [main, setMain] = useState(Products.images[0]);
   //There isn't any stock in APİ, and for this reason I used rate value
   const StockQuantity = 5;
 
@@ -43,14 +44,30 @@ const ProductDetails = ({ Products }) => {
     // );
   };
 
-  console.log(state);
-
   return (
     <div className="w-full">
       <div className="container lg:flex m-auto lg:p-36 p-6 gap-12">
         <div className="lg:w-1/2 w-full text-center">
-          <div className="">Ürün fotoğrafları</div>
-          <div>
+          <div className="lg:flex hidden">
+            <div className="galery flex flex-col pr-3 justify-center items-center">
+              {Products.images.length == 0
+                ? ""
+                : Products.images.map((image, index) => (
+                    <img
+                      src={image}
+                      alt="Product Photos"
+                      key={index}
+                      onClick={() => setMain(Products.images[index])}
+                      className={`${image === main ? "active-image" : null}`}
+                    />
+                  ))}
+            </div>
+            <div>
+              <img src={main} alt="photo" className="main" />
+            </div>
+          </div>
+
+          <div className="lg:hidden block">
             <Swiper
               loop={true}
               navigation={true}
@@ -122,7 +139,7 @@ const ProductDetails = ({ Products }) => {
               className="w-full uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out"
               onClick={() => {
                 addToCartHandler();
-                toast("Added to bag");
+                toast("Added to bag!");
               }}
             >
               Add To Cart

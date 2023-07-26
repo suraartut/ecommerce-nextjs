@@ -95,3 +95,26 @@ body {
   transform: scale(1.5);
   transition: all 0.3s linear;
 }
+
+.main {
+  height: auto;
+}
+
+.active-image {
+  border: 2px solid black;
+  padding: 4px;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  /* filter: brightness(1) !important; */
+}
+
+.galery img {
+  cursor: pointer;
+  margin: 0 0 3px 0;
+  width: 210px;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.6;
+  /* filter: brightness(0.7); karanlık yapmak için*/
+}
