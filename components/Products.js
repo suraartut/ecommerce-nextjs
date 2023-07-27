@@ -18,7 +18,7 @@ const Products = () => {
     <div className="container mx-auto lg:py-16 py-10 lg:px-10 px-5">
       <div className="mb-9 text-center">
         <Link href="/" className="text-[18px] text-[#858585] hover:text-black">
-          OUR CURRENT FAVORITES
+          PRODUCTS
         </Link>
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-12 gap-5 lg:mb-[30px] mb-2">

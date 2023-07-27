@@ -21,7 +21,7 @@ const Favorites = () => {
         </Link>
       </div>
       <div>
-        <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-12 gap-5 lg:mb-[30px] mb-2">
+        <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-12 gap-5 lg:mb-[30px] mb-2 ">
           {favorite?.map((item, index) => {
             if (index < 6) {
               return (
@@ -36,7 +36,7 @@ const Favorites = () => {
                   <div className="mt-[15px]">
                     <div className="text-sm">{item.title}</div>
                     <div className="mb-3">${item.price}.00</div>
-                    <div className="w-full flex">
+                    <div className="w-full">
                       <button
                         type="submit"
                         className="uppercase px-8 pb-3 pt-2 text-sm bg-[#266958] text-white hover:text-black hover:bg-[#FFD2B1] duration-300 transition-all ease-in-out"
