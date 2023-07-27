@@ -268,7 +268,7 @@ const Header = () => {
               if (index < 5) {
                 return (
                   <div key={item.id} className="p-3">
-                    <Link href="/">
+                    <Link href={`/category/${item.id}`}>
                       <div className="hover:text-gray-400 text-xl duration-300 transition-all ease-in-out">
                         {item.name}
                       </div>
